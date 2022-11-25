@@ -3,12 +3,11 @@ package repository
 import (
 	"database/sql"
 	"fmt"
-	"os"
 	"strconv"
 	"time"
 
 	"github.com/joho/godotenv"
-  osx "ms.roomap.jp/os"
+  osx "github.com/Garage-Standard-Inc/roomap-golib/os"
 	_ "github.com/go-sql-driver/mysql"
 )
 
