@@ -1,3 +1,5 @@
+github.com/Garage-Standard-Inc/roomap-golib/os v0.0.0-20221125144849-b91e8d86ea56 h1:MYpePmDmdrQXgSsFKRvr+Sp5/d6FbGle8Um/lfBJnxw=
+github.com/Garage-Standard-Inc/roomap-golib/os v0.0.0-20221125144849-b91e8d86ea56/go.mod h1:njwc4VrrEpRK2O/Tg6wdiAOlgZmjyWb2zw+MGol1K3Y=
 github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=
 github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
 github.com/joho/godotenv v1.4.0 h1:3l4+N6zfMWnkbPEXKng2o2/MR5mSwTrBih4ZEkkz1lg=
