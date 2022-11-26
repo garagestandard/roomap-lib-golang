@@ -26,7 +26,7 @@ func init() {
   dbmic := osx.Getenv("DB_MAX_OPEN_CONNS", "5")
 
   dbconf := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s",
-    dbu, dbpw, dbh, dbpt, dbch, dbn)
+    dbu, dbpw, dbh, dbpt, dbn, dbch)
 
   Db, err := sql.Open("mysql", dbconf)
   // SetConnMaxLifetime sets the maximum amount of time a connection may be reused.
