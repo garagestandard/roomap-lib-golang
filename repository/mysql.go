@@ -29,14 +29,15 @@ func init() {
     dbu, dbpw, dbh, dbpt, dbn, dbch)
 
   Db, err := sql.Open("mysql", dbconf)
+  if err != nil {
+    panic(err.Error())
+  }
   // SetConnMaxLifetime sets the maximum amount of time a connection may be reused.
   // Expired connections may be closed lazily before reuse.
   // If d <= 0, connections are not closed due to a connection's age
   mll, _ := strconv.Atoi(dbmll)
   Db.SetConnMaxLifetime(time.Duration(mll) * time.Minute)
-  if err != nil {
-    fmt.Println(err)
-  }
+
   // SetMaxIdleConns sets the maximum number of connections in the idle connection pool.
   // If MaxOpenConns is greater than 0 but less than the new MaxIdleConns, then the new MaxIdleConns will be reduced to match the MaxOpenConns limit.
   // If n <= 0, no idle connections are retained.
@@ -53,6 +54,8 @@ func init() {
   if err := Db.Ping(); err != nil {
     fmt.Println(err)
   }
-
-  fmt.Printf("db<%s> connected", dbn)
+  fmt.Printf("db<%s> connected\n", dbn)
+  fmt.Printf("- ConnMaxLifetime:<%s>", dbmll)
+  fmt.Printf("- MaxIdleConns:<%s>", dbmic)
+  fmt.Printf("- MaxOpenConns:<%s>", dbmoc)
 }
