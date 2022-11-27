@@ -11,6 +11,7 @@ import (
 )
 
 var Db *sql.DB
+var err error
 
 func init() {
 
@@ -28,7 +29,7 @@ func init() {
   dbconf := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s",
     dbu, dbpw, dbh, dbpt, dbn, dbch)
 
-  Db, err := sql.Open("mysql", dbconf)
+  Db, err = sql.Open("mysql", dbconf)
   if err != nil {
     panic(err.Error())
   }
