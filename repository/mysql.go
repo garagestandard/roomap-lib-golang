@@ -55,7 +55,7 @@ func init() {
     fmt.Println(err)
   }
   fmt.Printf("db<%s> connected\n", dbn)
-  fmt.Printf("- ConnMaxLifetime:<%s>", dbmll)
-  fmt.Printf("- MaxIdleConns:<%s>", dbmic)
-  fmt.Printf("- MaxOpenConns:<%s>", dbmoc)
+  fmt.Printf("- ConnMaxLifetime:<%s>\n", dbmll)
+  fmt.Printf("- MaxIdleConns:<%s>\n", dbmic)
+  fmt.Printf("- MaxOpenConns:<%s>\n", dbmoc)
 }
