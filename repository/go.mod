@@ -1,3 +1,3 @@
-module github.com/Garage-Standard-Inc/roomap-golib/repository
+module github.com/garagestandard/roomap-lib-golang/repository
 
 go 1.19

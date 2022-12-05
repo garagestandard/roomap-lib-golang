@@ -1,4 +1,4 @@
-module github.com/garagestandard/roomap-golib/os
+module github.com/garagestandard/roomap-lib-golang/os
 
 go 1.19
 

@@ -6,7 +6,7 @@ import (
   "strconv"
   "time"
 
-  osx "github.com/garagestandard/roomap-golib/os"
+  osx "github.com/garagestandard/roomap-lib-golang/os"
   _ "github.com/go-sql-driver/mysql"
 )
 
