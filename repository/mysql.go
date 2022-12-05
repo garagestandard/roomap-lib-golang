@@ -15,13 +15,12 @@ var err error
 
 func init() {
 
-  dbn := osx.Getenv("DB_NAME", "")
-  dbu := osx.Getenv("DB_USERNAME", "")
-  dbpw := osx.Getenv("DB_PASSWORD", "")
-  dbh := osx.Getenv("DB_HOST", "")
-  dbpt := osx.Getenv("DB_PORT", "3306")
-  dbch := osx.Getenv("DB_CHARSET", "utf8mb4")
-
+  dbn   := osx.Getenv("DB_NAME", "")
+  dbu   := osx.Getenv("DB_USERNAME", "")
+  dbpw  := osx.Getenv("DB_PASSWORD", "")
+  dbh   := osx.Getenv("DB_HOST", "")
+  dbpt  := osx.Getenv("DB_PORT", "3306")
+  dbch  := osx.Getenv("DB_CHARSET", "utf8mb4")
   dbmll := osx.Getenv("DB_MAX_LIFE_TIME", "25")
   dbmoc := osx.Getenv("DB_MAX_IDLE_CONNS", "25")
   dbmic := osx.Getenv("DB_MAX_OPEN_CONNS", "5")
