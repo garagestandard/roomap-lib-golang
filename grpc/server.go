@@ -53,7 +53,7 @@ func CreateUnaryServer() *grpc.Server {
 func StartUnaryServer(grpcServer *grpc.Server) {
 
 	port := os.Getenv("GRPC_LISTEN_PORT")
-	listenPort, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
+	listenPort, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%s", port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
