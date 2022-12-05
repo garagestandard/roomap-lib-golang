@@ -1,10 +1,10 @@
-module github.com/Garage-Standard-Inc/roomap-golib/grpc
+module github.com/garagestandard/roomap-lib-golang/grpc
 
 go 1.19
 
 require (
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
-	go.uber.org/zap v1.23.0
+	go.uber.org/zap v1.24.0
 	google.golang.org/grpc v1.51.0
 )
 
