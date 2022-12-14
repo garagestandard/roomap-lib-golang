@@ -25,7 +25,7 @@ func init() {
   dbmoc := osx.Getenv("DB_MAX_IDLE_CONNS", "25")
   dbmic := osx.Getenv("DB_MAX_OPEN_CONNS", "5")
 
-  dbconf := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s",
+  dbconf := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=true",
     dbu, dbpw, dbh, dbpt, dbn, dbch)
 
   Db, err = sql.Open("mysql", dbconf)
