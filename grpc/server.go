@@ -14,9 +14,7 @@ import (
 	"go.uber.org/zap/zapcore"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/encoding"
 	"google.golang.org/grpc/reflection"
-	"google.golang.org/protobuf/proto"
 )
 
 func SetupLogger() (*zap.Logger, grpc_zap.Option) {
@@ -40,30 +38,10 @@ func SetupLogger() (*zap.Logger, grpc_zap.Option) {
 	return zap, zap_opt
 }
 
-type protoCodecWithEmitDefaults struct {
-	encoding.Codec
-}
-
-func (p *protoCodecWithEmitDefaults) Marshal(v interface{}) ([]byte, error) {
-	if pb, ok := v.(proto.Message); ok {
-		return proto.MarshalOptions{EmitDefaults: true}.Marshal(pb)
-	}
-	return p.Codec.Marshal(v)
-}
-
-func (p *protoCodecWithEmitDefaults) Unmarshal(data []byte, v interface{}) error {
-	if pb, ok := v.(proto.Message); ok {
-		return proto.Unmarshal(data, pb)
-	}
-	return p.Codec.Unmarshal(data, v)
-}
-
 func CreateUnaryServer() *grpc.Server {
-	customCodec := &protoCodecWithEmitDefaults{Codec: &protoCodec{}}
 	zap, zap_opt := SetupLogger()
 
 	grpcServer := grpc.NewServer(
-		grpc.ForceServerCodec(customCodec),
 		grpc_middleware.WithUnaryServerChain(
 			grpc_ctxtags.UnaryServerInterceptor(),
 			grpc_zap.UnaryServerInterceptor(zap, zap_opt),
