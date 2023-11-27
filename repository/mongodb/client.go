@@ -13,8 +13,9 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"errors"
-	osx "github.com/garagestandard/roomap-lib-golang/os"
 	"io/ioutil"
+
+	osx "github.com/garagestandard/roomap-lib-golang/os"
 )
 
 const (
@@ -98,4 +99,9 @@ func GetClient() *mongo.Client {
 		InitClient()
 	}
 	return client
+}
+
+func GetDatabase() *mongo.Database {
+	dbn := osx.Getenv("MONGODB_NAME", "")
+	return GetClient().Database(dbn)
 }
