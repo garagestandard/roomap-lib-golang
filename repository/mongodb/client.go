@@ -19,7 +19,7 @@ import (
 )
 
 const (
-	connectionStringTemplate = "mongodb://%s:%s@%s:%s/%s?tls=true&replicaSet=rs0&readpreference=%s"
+	connectionStringTemplate = "mongodb://%s:%s@%s:%s/?tls=true&replicaSet=rs0&readpreference=%s"
 )
 
 var err error
@@ -32,14 +32,12 @@ func InitClient() {
 	dbpw := osx.Getenv("MONGODB_PASSWORD", "")
 	dbh := osx.Getenv("MONGODB_ENDPOINT", "")
 	dbpt := osx.Getenv("MONGODB_PORT", "27017")
-	dbn := osx.Getenv("MONGODB_NAME", "")
 	dbrp := osx.Getenv("MONGODB_READ_PREFERENCE", "secondaryPreferred")
-
 	dbct := osx.Getenv("MONGODB_CONNECTION_TIMEOUT", "5")
 	dbqt := osx.Getenv("MONGODB_QUERY_TIMEOUT", "30")
 
 	dbconf := fmt.Sprintf(connectionStringTemplate,
-		dbu, dbpw, dbh, dbpt, dbn, dbrp)
+		dbu, dbpw, dbh, dbpt, dbrp)
 
 	tlsConfig, err := getCustomTLSConfig(caFilePath)
 	if err != nil {
@@ -71,7 +69,6 @@ func InitClient() {
 	}
 
 	log.Println("Connected to MongoDB!")
-	log.Printf("- Database: <%s>\n", dbn)
 	log.Printf("- Connection Timeout:<%s>\n", dbct)
 	log.Printf("- Query Timeout:<%s>\n", dbqt)
 }
@@ -99,9 +96,4 @@ func GetClient() *mongo.Client {
 		InitClient()
 	}
 	return client
-}
-
-func GetDatabase() *mongo.Database {
-	dbn := osx.Getenv("MONGODB_NAME", "")
-	return GetClient().Database(dbn)
 }
