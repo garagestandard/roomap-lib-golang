@@ -7,6 +7,8 @@ import (
 	"os"
 	"os/signal"
 
+	health "google.golang.org/grpc/health/grpc_health_v1"
+
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
@@ -39,6 +41,7 @@ func SetupLogger() (*zap.Logger, grpc_zap.Option) {
 }
 
 func CreateUnaryServer() *grpc.Server {
+
 	zap, zap_opt := SetupLogger()
 
 	grpcServer := grpc.NewServer(
@@ -47,6 +50,7 @@ func CreateUnaryServer() *grpc.Server {
 			grpc_zap.UnaryServerInterceptor(zap, zap_opt),
 		),
 	)
+	health.RegisterHealthServer(grpcServer, GetHealthHandler())
 	return grpcServer
 }
 
