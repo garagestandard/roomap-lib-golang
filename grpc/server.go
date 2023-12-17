@@ -6,6 +6,7 @@ import (
 	"net"
 	"os"
 	"os/signal"
+	"strconv"
 
 	health "google.golang.org/grpc/health/grpc_health_v1"
 
@@ -57,6 +58,11 @@ func CreateUnaryServer() *grpc.Server {
 func StartUnaryServer(grpcServer *grpc.Server) {
 
 	port := os.Getenv("GRPC_LISTEN_PORT")
+	// ポート番号の妥当性をチェック
+	if _, err := strconv.Atoi(port); err != nil {
+		log.Fatalf("invalid port number: %v", err)
+	}
+
 	listenPort, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%s", port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
@@ -71,6 +77,6 @@ func StartUnaryServer(grpcServer *grpc.Server) {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
-	log.Println("stopping gRPC s...")
+	log.Println("stopping gRPC server...")
 	grpcServer.GracefulStop()
 }
